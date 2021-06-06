@@ -1,0 +1,86 @@
+{
+  "name": "noroff-explore",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "analyze": "BUNDLE_ANALYZE=both yarn build",
+    "prettier-fix": "prettier --write .",
+    "find:unused": "next-unused",
+    "generate": "graphql-codegen"
+  },
+  "engines": {
+    "node": "14.x"
+  },
+  "dependencies": {
+    "@headlessui/react": "^1.2.0",
+    "@heroicons/react": "^1.0.1",
+    "@tailwindcss/forms": "^0.3.2",
+    "@tailwindcss/typography": "^0.4.1",
+    "autoprefixer": "^10.2.6",
+    "email-validator": "^2.0.4",
+    "keen-slider": "^5.4.1",
+    "next": "^10.2.3",
+    "next-seo": "^4.24.0",
+    "postcss": "^8.3.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-hotjar": "^2.2.1",
+    "react-tippy": "^1.4.0",
+    "react-use-hotjar": "^1.1.2",
+    "tailwindcss": "^2.1.2"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "^1.21.5",
+    "@graphql-codegen/schema-ast": "^1.18.3",
+    "@graphql-codegen/typescript": "^1.22.1",
+    "@graphql-codegen/typescript-operations": "^1.18.0",
+    "@types/classnames": "^2.3.1",
+    "@types/react": "^17.0.8",
+    "graphql": "^15.5.0",
+    "husky": "^6.0.0",
+    "next-unused": "^0.0.6",
+    "postcss-flexbugs-fixes": "^5.0.2",
+    "postcss-preset-env": "^6.7.0",
+    "prettier": "^2.3.0",
+    "typescript": "^4.3.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*.{ts,tsx}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "next-unused": {
+    "alias": {
+      "@assets/*": [
+        "assets/*"
+      ],
+      "@config/*": [
+        "config/*"
+      ],
+      "@components/*": [
+        "components/*"
+      ],
+      "@wordpress/*": [
+        "wordpress/*"
+      ]
+    },
+    "debug": true,
+    "include": [
+      "components",
+      "pages"
+    ],
+    "exclude": [],
+    "entrypoints": [
+      "pages"
+    ]
+  }
+}

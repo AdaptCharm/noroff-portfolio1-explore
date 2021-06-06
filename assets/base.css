@@ -1,0 +1,8 @@
+:root {
+  --color-link: hsla(222, 8%, 95%, 0.45);
+
+  --shadow-smallest: 0 0px 12px -6px hsla(204, 100%, 8%, 0.30);
+  --shadow-small: 0 0px 15px -6px hsla(204, 100%, 8%, 0.40);
+  --shadow-medium: 0 8px 30px hsla(0, 0%, 0%, 0.12);
+  --shadow-large: 0 30px 60px hsla(0, 0%, 0%, 0.12);
+}

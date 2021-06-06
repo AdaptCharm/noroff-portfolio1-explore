@@ -1,0 +1,17 @@
+{
+  "title": "Discover the most exotic travel destinations",
+  "titleTemplate": "%s | Explore",
+  "defaultTitle": "Explore",
+  "description": "We cover all the most exotic travel destinations around the world.",
+  "openGraph": {
+    "type": "website",
+    "locale": "en",
+    "url": "https://noroff-explore.vercel.app",
+    "site_name": "Explore"
+  },
+  "twitter": {
+    "handle": "@explore",
+    "site": "@explore",
+    "cardType": "summary_large_image"
+  }
+}
