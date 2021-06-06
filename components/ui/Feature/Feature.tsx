@@ -11,7 +11,7 @@ interface Props {
 
 interface KeywordProps {
   name: string,
-  color: string
+  color: 'pink' | 'blue'
 }
 
 interface ContentProps {
@@ -42,7 +42,10 @@ const Feature: FC<Props> = ({
         <div>
           <h2 className={cn(
             'text-base font-semibold tracking-wider uppercase',
-            `text-${keyword.color}-600`
+            {
+              'text-pink-600': keyword.color === 'pink',
+              'text-blue-600': keyword.color === 'blue',
+            }
           )}>
             {keyword.name}
           </h2>
