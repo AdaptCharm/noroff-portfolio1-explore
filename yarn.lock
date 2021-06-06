@@ -2375,11 +2375,6 @@ elliptic@^6.5.3:
     minimalistic-assert "^1.0.1"
     minimalistic-crypto-utils "^1.0.1"
 
-email-validator@^2.0.4:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/email-validator/-/email-validator-2.0.4.tgz#b8dfaa5d0dae28f1b03c95881d904d4e40bfe7ed"
-  integrity sha512-gYCwo7kh5S3IDyZPLZf6hSS0MnZT8QmJFqYvbqlDZSbwdZlY6QZWxJ4i/6UhITOJ4XzyI647Bm2MXKCLqnJ4nQ==
-
 emoji-regex@^8.0.0:
   version "8.0.0"
   resolved "https://registry.yarnpkg.com/emoji-regex/-/emoji-regex-8.0.0.tgz#e818fd69ce5ccfcb404594f842963bf53164cc37"
@@ -5058,6 +5053,11 @@ react-dom@^17.0.2:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     scheduler "^0.20.2"
+
+react-hook-form@^7.8.1:
+  version "7.8.1"
+  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.8.1.tgz#291609c50778bf8bc94e5d4c586e9ee5c6dd512f"
+  integrity sha512-pwWxd4UfwsKVh/W2YE2Hnu7KBY4KTCZq3QO1PMISzP31AZ5Kmv6ji085QVIHVWVSLT4oX6IhmZ2bWJ2oBIwobQ==
 
 react-hotjar@^2.2.1:
   version "2.2.1"

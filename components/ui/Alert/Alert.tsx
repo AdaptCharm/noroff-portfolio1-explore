@@ -17,8 +17,9 @@ import { XIcon } from '@heroicons/react/solid'
 
 interface Props {
   className?: string
-  message: string
-  type?: Type
+  message?: string
+  type?: Type,
+  onClick?: React.ReactNode
 }
 
 type Type = 'success' | 'warning' | 'error' | 'info'

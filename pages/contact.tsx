@@ -1,55 +1,31 @@
-import {
-  useEffect,
-  useState,
-  useCallback
-} from 'react'
-import { NextSeo } from 'next-seo'
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
 
-import { validate } from 'email-validator'
+import { NextSeo } from 'next-seo'
 
 import { Layout } from '@components/common'
 import { Pattern } from '@components/icons'
 import {
-  Input,
-  Textarea,
   Button,
   Alert
 } from '@components/ui'
 
+type FormValues = {
+  name: string
+  email: string
+  subject: string
+  message: string
+}
+
 const Contact = () => {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [subject, setSubject] = useState('')
-  const [message, setMessage] = useState('')
   const [alert, setAlert] = useState('')
-  const [isPassed, setIsPassed] = useState(false)
-  const [isDisabled, setIsDisabled] = useState(false)
 
-  const handleContact = async (evt: React.SyntheticEvent<EventTarget>) => {
-    evt.preventDefault()
+  const { register, handleSubmit, formState: { errors }, reset } = useForm<FormValues>()
 
-    if (!isPassed && !isDisabled) {
-      setIsPassed(true)
-      handleValidation()
-    }
-
-    try {
-      setAlert('')
-    } catch ({ errors }) {
-      setAlert(errors[0].message)
-    }
+  const onSubmit = () => {
+    reset({ name: '', email: '', subject: '', message: '' }, { keepErrors: false })
+    setAlert('You are now subscribed to the newsletter!')
   }
-
-
-  const handleValidation = useCallback(() => {
-    if (isPassed) {
-      setIsDisabled(name.length <= 5 || !validate(email) || subject.length <= 15 || message.length <= 25)
-    }
-  }, [name, email, subject, message, isPassed])
-
-  useEffect(() => {
-    handleValidation()
-  }, [handleValidation])
 
   return (
     <>
@@ -74,16 +50,22 @@ const Contact = () => {
           </p>
           </div>
           <div className="mt-12">
-            <form className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8" onSubmit={handleContact}>
+            <form className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8" onSubmit={handleSubmit(onSubmit)} autoComplete="false">
               <div className="sm:col-span-2">
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700">
                   Name
                 </label>
                 <div className="mt-1">
-                  <Input
+                  <input
+                    className="py-3 px-4 rounded-md block w-full transition ease-default focus:outline-none focus:ring-transparent border-1 focus:border-gray-900 border-gray-200"
                     type="text"
-                    onChange={setName}
+                    id="name"
+                    {...register('name', {
+                      required: 'The name is required',
+                      minLength: { value: 5, message: 'The name must be minimum 5 characters long' }
+                    })}
                   />
+                  {errors.name && <p className="mt-2">{errors.name.message}.</p>}
                 </div>
               </div>
               <div className="sm:col-span-2">
@@ -91,10 +73,19 @@ const Contact = () => {
                   Email
                 </label>
                 <div className="mt-1">
-                  <Input
+                  <input
+                    className="py-3 px-4 rounded-md block w-full transition ease-default focus:outline-none focus:ring-transparent border-1 focus:border-gray-900 border-gray-200"
                     type="email"
-                    onChange={setEmail}
+                    id="email"
+                    {...register('email', {
+                      required: 'The email address is required',
+                      pattern: {
+                        value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+                        message: 'Please enter a valid email address'
+                      }
+                    })}
                   />
+                  {errors.email && <p className="mt-2">{errors.email.message}.</p>}
                 </div>
               </div>
               <div className="sm:col-span-2">
@@ -102,10 +93,19 @@ const Contact = () => {
                   Subject
                 </label>
                 <div className="mt-1">
-                  <Input
+                  <input
+                    className="py-3 px-4 rounded-md block w-full transition ease-default focus:outline-none focus:ring-transparent border-1 focus:border-gray-900 border-gray-200"
                     type="text"
-                    onChange={setSubject}
+                    id="subject"
+                    {...register('subject', {
+                      required: 'The subject is required',
+                      minLength: {
+                        value: 15,
+                        message: 'The subject must be minimum 15 characters long'
+                      }
+                    })}
                   />
+                  {errors.subject && <p className="mt-2">{errors.subject.message}.</p>}
                 </div>
               </div>
               <div className="sm:col-span-2">
@@ -113,14 +113,29 @@ const Contact = () => {
                   Message
                 </label>
                 <div className="mt-1">
-                  <Textarea
-                    onChange={setMessage}
+                  <textarea
+                    className="py-3 px-4 rounded-md block w-full transition ease-default focus:outline-none focus:ring-transparent border-1 focus:border-gray-900 border-gray-200"
+                    id="message"
+                    {...register('message', {
+                      required: 'The message is required',
+                      minLength: {
+                        value: 25,
+                        message: 'The message must be minimum 25 characters long'
+                      }
+                    })}
                   />
+                  {errors.message && <p className="mt-2">{errors.message.message}.</p>}
                 </div>
               </div>
               <div className="sm:col-span-2">
                 <Button>Submit</Button>
               </div>
+              {alert && (
+                <Alert
+                  type="info"
+                  message={alert}
+                />
+              )}
             </form>
           </div>
         </div>
