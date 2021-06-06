@@ -2,10 +2,10 @@ import {
   WP_API_URL,
   WP_API_ACCESS_NAME,
   WP_API_ACCESS_SECRET
-} from '../constants'
+} from '@config/constants'
 
 if (!WP_API_URL || !WP_API_ACCESS_NAME || !WP_API_ACCESS_SECRET) {
-  throw new Error('Required environment variables missing.')
+  throw new Error('Required WordPress API environment variables missing.')
 }
 
 const encodedAuthData = Buffer.from(`${WP_API_ACCESS_NAME}:${WP_API_ACCESS_SECRET}`).toString('base64')
